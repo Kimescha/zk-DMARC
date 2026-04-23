@@ -16,13 +16,16 @@ The system operates through three primary cryptographic layers built into the No
 
 
 **System Architecture**
+
 The system is divided into two main components:
 
-The Rust Parser (/parser): * Acts as a pre-processor for the ZK circuit. Parses raw .eml files and performs "Relaxed" canonicalization. Extracts header indices (e.g., from_idx) and injects them into the circuit to reduce the computational cost of string searching in ZKP.
+The Rust Parser (/parser): Acts as a pre-processor for the ZK circuit. Parses raw .eml files and performs "Relaxed" canonicalization. Extracts header indices (e.g., from_idx) and injects them into the circuit to reduce the computational cost of string searching in ZKP.
 
-The Noir Circuit (/circuit): Verifies the 2048-bit RSA signature of the DKIM header.Executes the alignment and binning constraints.Outputs a constant-size (approx. 400 bytes) ZK-SNARK proof.Installation & Setup
+The Noir Circuit (/circuit): Verifies the 2048-bit RSA signature of the DKIM header.Executes the alignment and binning constraints.Outputs a constant-size (approx. 400 bytes) ZK-SNARK proof.
 
-Prerequisites
+#### Installation & Setup
+
+**Prerequisites**
 
 Rust: Install via rustup, also the Rust Analyzer extension in vscode
 
@@ -43,7 +46,7 @@ cd circuit
 nargo install
 ```
 
-How to Run the System
+#### How to Run the System
 
 Step 1: Prepare the Input. Place a raw email file (downloaded as "Original Source" from a provider like Gmail) into the root directory and name it test_email.eml. Ensure the email contains a valid DKIM-Signature header.
 
@@ -63,7 +66,8 @@ Step 4: Verify the Proof. The proof can be verified by any third party (the doma
 ```
 nargo verify
 ```
-Security & Evaluation Metrics
+#### Security & Evaluation Metrics
+
 Metadata Entropy: The system reduces the "Information Surprise" of a report from full metadata (IP/Time/Subject) to a single policy attestation bit.
 
 Proof Size: Regardless of the email size, the resulting proof remains a constant ~400 bytes, ensuring massive network efficiency for aggregate reporting.
