@@ -30,7 +30,7 @@ Nargo: The Noir build tool and package manager.
 
 Barretenberg: The proving backend (usually installed automatically with Nargo).
 
-Clone and Build
+**Clone and Build:**
 
 #### Clone the repository
 ```
