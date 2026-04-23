@@ -8,20 +8,24 @@ about the organization's internal network topology or cloud provider landscape.
 
 The system operates through three primary cryptographic layers built into the Noir circuit:
 
-1. DMARC Alignment VerificationThe core logic enforces "Strict Alignment." It extracts the From: header and the DKIM d= (signing domain) tag. The circuit mathematically asserts that these two strings are identical. This ensures that the email is truly authorized by the domain it claims to be from, preventing spoofing at the protocol level.
+1. DMARC alignment verification is the core logic that enforces the Strict Alignment. It extracts the From: header and the DKIM d= (signing domain) tag. The circuit mathematically asserts that these two strings are identical. This ensures that the email is truly authorized by the domain it claims to be from, preventing spoofing at the protocol level.
 
-2. Temporal Binning (Anti-Correlation)To prevent timing side-channel attacks, the system implements temporal binning. Instead of proving the exact Unix timestamp from the DKIM t= tag, the circuit "crushes" the time into a 4-hour window (bin).Logic: bin_id = timestamp / 14400Security Gain: Multiple emails arriving in the same window share the same bin_id, making it impossible for an attacker to correlate a specific report with their own server logs.
+2. To prevent timing side-channel attacks, the system implements temporal binning (Anti-Correlation). Instead of proving the exact Unix timestamp from the DKIM t= tag, the circuit crushes the time into a 4-hour window (bin).
+   
+   Logic: bin_id = timestamp / 14400Security
+   
+   Gain: Multiple emails arriving in the same window share the same bin_id, making it impossible for an attacker to correlate a specific report with their own server logs.
 
-3. ZK-Threshold Reporting (Noise Reduction)To solve the "Crying Wolf" problem in network security, the system can be configured to only output a valid proof if a specific number of failures occur within a batch. This ensures that minor DNS glitches do not flood administrators with reports, while statistically significant attacks trigger a verified alert.
+4. ZK-Threshold Reporting (Noise Reduction) solves the "Crying Wolf" problem in network security. The system can be configured to only output a valid proof if a specific number of failures occur within a batch. This ensures that minor DNS glitches do not flood administrators with reports, while statistically significant attacks trigger a verified alert.
 
 
 **System Architecture**
 
 The system is divided into two main components:
 
-The Rust Parser (/parser): Acts as a pre-processor for the ZK circuit. Parses raw .eml files and performs "Relaxed" canonicalization. Extracts header indices (e.g., from_idx) and injects them into the circuit to reduce the computational cost of string searching in ZKP.
+**The Rust Parser (/parser):** Acts as a pre-processor for the ZK circuit. Parses raw .eml files and performs relaxed canonicalization. Extracts header indices (e.g., from_idx) and injects them into the circuit to reduce the computational cost of string searching in ZKP.
 
-The Noir Circuit (/circuit): Verifies the 2048-bit RSA signature of the DKIM header.Executes the alignment and binning constraints.Outputs a constant-size (approx. 400 bytes) ZK-SNARK proof.
+**The Noir Circuit (/circuit):** Verifies the 2048-bit RSA signature of the DKIM header. Executes the alignment and binning constraints. Outputs a constant-size (approx. 400 bytes) ZK-SNARK proof.
 
 #### Installation & Setup
 
