@@ -32,12 +32,12 @@ Barretenberg: The proving backend (usually installed automatically with Nargo).
 
 Clone and Build
 
-# Clone the repository
+#### Clone the repository
 ```
 git clone https://github.com/your-repo/zk-dmarc.git
 cd zk-dmarc
 ```
-# Install Noir dependencies
+#### Install Noir dependencies
 ```
 cd circuit
 nargo install
