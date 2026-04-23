@@ -33,42 +33,36 @@ Barretenberg: The proving backend (usually installed automatically with Nargo).
 Clone and Build
 
 # Clone the repository
-`
+```
 git clone https://github.com/your-repo/zk-dmarc.git
-`
-`
 cd zk-dmarc
-`
+```
 # Install Noir dependencies
-`
+```
 cd circuit
-`
-`
 nargo install
-`
+```
 
 How to Run the System
 
 Step 1: Prepare the Input. Place a raw email file (downloaded as "Original Source" from a provider like Gmail) into the root directory and name it test_email.eml. Ensure the email contains a valid DKIM-Signature header.
 
 Step 2: Run the Rust ParserThe parser extracts the necessary cryptographic witnesses and prepares the Prover.toml for the Noir circuit.
-`
+```
 cd parser
-`
-`
 cargo run
-`
+```
 
 Step 3: Generate the ZK Proof. Once the Prover.toml is generated in the circuit/ folder, use Nargo to generate the cryptographic proof.
-`
+```
 cd ../circuit
 nargo prove
-`
+```
 
 Step 4: Verify the Proof. The proof can be verified by any third party (the domain owner or an auditor) without them ever seeing the original email.
-`
+```
 nargo verify
-`
+```
 Security & Evaluation Metrics
 Metadata Entropy: The system reduces the "Information Surprise" of a report from full metadata (IP/Time/Subject) to a single policy attestation bit.
 
