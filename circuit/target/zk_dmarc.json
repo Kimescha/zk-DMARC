@@ -1,0 +1,18 @@
+
+{
+  "noir_version": "0.31.0",
+  "hash": "8f3e2d1c9b0a7f6e",
+  "abi": {
+    "parameters": [
+      { "name": "header", "type": { "kind": "array", "length": 1024, "type": { "kind": "integer", "sign": "unsigned", "width": 8 } }, "visibility": "private" },
+      { "name": "signature", "type": { "kind": "array", "length": 256, "type": { "kind": "integer", "sign": "unsigned", "width": 8 } }, "visibility": "private" },
+      { "name": "pubkey", "type": { "kind": "struct", "path": "rsa::RSAPublicKey", "fields": [ { "name": "modulus", "type": { "kind": "array", "length": 256, "type": { "kind": "integer", "sign": "unsigned", "width": 8 } } }, { "name": "exponent", "type": { "kind": "integer", "sign": "unsigned", "width": 32 } } ] }, "visibility": "private" },
+      { "name": "from_idx", "type": { "kind": "integer", "sign": "unsigned", "width": 32 }, "visibility": "private" },
+      { "name": "dkim_d_idx", "type": { "kind": "integer", "sign": "unsigned", "width": 32 }, "visibility": "private" },
+      { "name": "t_tag_idx", "type": { "kind": "integer", "sign": "unsigned", "width": 32 }, "visibility": "private" },
+      { "name": "bin_id", "type": { "kind": "integer", "sign": "unsigned", "width": 64 }, "visibility": "public" }
+    ],
+    "return_type": null
+  },
+  "bytecode": "H4sIAAAAAAAA/zV..."
+}
