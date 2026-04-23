@@ -23,7 +23,7 @@ The system operates through three primary cryptographic layers built into the No
 
 The system is divided into two main components:
 
-**The Rust Parser (/parser):** Acts as a pre-processor for the ZK circuit. Parses raw .eml files and performs relaxed canonicalization. Extracts header indices (e.g., from_idx) and injects them into the circuit to reduce the computational cost of string searching in ZKP.
+**The Rust Parser (/parser):** Acts as a pre-processor for the ZK circuit. Parses raw .eml files (here I used an example email to create the file. Bulk metadata processing is also possible through automation for an organization, if authorized) and performs relaxed canonicalization. Extracts header indices (e.g., from_idx) and injects them into the circuit to reduce the computational cost of string searching in ZKP.
 
 **The Noir Circuit (/circuit):** Verifies the 2048-bit RSA signature of the DKIM header. Executes the alignment and binning constraints. Outputs a constant-size (approx. 400 bytes) ZK-SNARK proof.
 
