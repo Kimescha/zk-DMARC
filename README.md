@@ -35,11 +35,15 @@ Clone and Build
 # Clone the repository
 `
 git clone https://github.com/your-repo/zk-dmarc.git
+`
+`
 cd zk-dmarc
 `
 # Install Noir dependencies
 `
 cd circuit
+`
+`
 nargo install
 `
 
@@ -50,6 +54,8 @@ Step 1: Prepare the Input. Place a raw email file (downloaded as "Original Sourc
 Step 2: Run the Rust ParserThe parser extracts the necessary cryptographic witnesses and prepares the Prover.toml for the Noir circuit.
 `
 cd parser
+`
+`
 cargo run
 `
 
