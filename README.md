@@ -66,7 +66,7 @@ cd ../circuit
 nargo prove
 ```
 
-Step 4: Verify the Proof. The proof can be verified by any third party (the domain owner or an auditor) without them ever seeing the original email.
+Step 4: Verify the Proof. The proof can be verified by **any** third party (the domain owner or an auditor) without them ever seeing the original email.
 ```
 nargo verify
 ```
@@ -74,10 +74,10 @@ nargo verify
 
 Metadata Entropy: The system reduces the "Information Surprise" of a report from full metadata (IP/Time/Subject) to a single policy attestation bit.
 
-Proof Size: Regardless of the email size, the resulting proof remains a constant ~400 bytes, ensuring massive network efficiency for aggregate reporting.
+Proof Size: Regardless of the email size, the resulting proof remains a constant (approximately) 400 bytes, ensuring massive network efficiency for aggregate reporting.
 
 Soundness: It is computationally infeasible for a malicious actor to forge a passing DMARC proof without possessing a validly signed DKIM header from the target domain.
 
-Latency: Proving is performed asynchronously ($O(N \log N)$), ensuring zero impact on the critical path of email delivery.
+Latency: Proving is performed asynchronously (O(N \log N)), ensuring zero impact on the critical path of email delivery.
 
 **(The system still needs enhancements.)**
