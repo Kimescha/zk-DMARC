@@ -1,7 +1,7 @@
 This is my course project for INSE 6120, presented at Concordia University by Dr. Jeremy Clark. 
 
 In this project, I tried to use Noir (a Rust-based DSL designed by Aztec Labs) 
-to address the existing issues in the Standard DMARC RUA reports, which list every sending IP, providing a "Target Map" for hackers. 
+to address the existing issues in the Standard DMARC RUA reports, which list every sending IP, providing a "target map" for hackers. 
 Considering the trade-offs, this might be a project worth exploring in the future, enabling private and verifiable computing in Web3 apps, 
 by circuits hiding the IP and only outputting an Alignment Attestation, an attacker who intercepts the RUA report gains zero information 
 about the organization's internal network topology or cloud provider landscape.
@@ -14,9 +14,9 @@ The system operates through three primary cryptographic layers built into the No
    
    Logic: bin_id = timestamp / 14400Security
    
-   Gain: Multiple emails arriving in the same window share the same bin_id, making it impossible for an attacker to correlate a specific report with their own server logs.
+   Gain: multiple emails arriving in the same window share the same bin_id, making it impossible for an attacker to correlate a specific report with their own server logs.
 
-4. ZK-Threshold Reporting (Noise Reduction) solves the "Crying Wolf" problem in network security. The system can be configured to only output a valid proof if a specific number of failures occur within a batch. This ensures that minor DNS glitches do not flood administrators with reports, while statistically significant attacks trigger a verified alert.
+4. ZK-Threshold Reporting (Noise Reduction) solves the Crying Wolf problem in network security. The system can be configured to only output a valid proof if a specific number of failures occur within a batch. This ensures that minor DNS glitches do not flood administrators with reports, while statistically significant attacks trigger a verified alert.
 
 
 **System Architecture**
@@ -54,7 +54,7 @@ nargo install
 
 Step 1: Prepare the Input. Place a raw email file (downloaded as "Original Source" from a provider like Gmail) into the root directory and name it test_email.eml. Ensure the email contains a valid DKIM-Signature header.
 
-Step 2: Run the Rust ParserThe parser extracts the necessary cryptographic witnesses and prepares the Prover.toml for the Noir circuit.
+Step 2: Run the Rust Parser. The parser extracts the necessary cryptographic witnesses and prepares the Prover.toml for the Noir circuit.
 ```
 cd parser
 cargo run
@@ -66,7 +66,7 @@ cd ../circuit
 nargo prove
 ```
 
-Step 4: Verify the Proof. The proof can be verified by **any** third party (the domain owner or an auditor) without them ever seeing the original email.
+Step 4: verify the Proof. The proof can be verified by **any** third party (the domain owner or an auditor) without them ever seeing the original email.
 ```
 nargo verify
 ```
