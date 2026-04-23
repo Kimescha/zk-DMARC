@@ -72,7 +72,7 @@ nargo verify
 ```
 #### Security & Evaluation Metrics
 
-Metadata Entropy: The system reduces the "Information Surprise" of a report from full metadata (IP/Time/Subject) to a single policy attestation bit.
+Metadata Entropy: The system reduces the "information surprise" of a report from full metadata (IP/Time/Subject) to a single policy attestation bit.
 
 Proof Size: Regardless of the email size, the resulting proof remains a constant (approximately) 400 bytes, ensuring massive network efficiency for aggregate reporting.
 
