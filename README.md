@@ -78,6 +78,6 @@ Proof Size: Regardless of the email size, the resulting proof remains a constant
 
 Soundness: It is computationally infeasible for a malicious actor to forge a passing DMARC proof without possessing a validly signed DKIM header from the target domain.
 
-Latency: Proving is performed asynchronously (O(N \log N)), ensuring zero impact on the critical path of email delivery.
+Complexity: Proving is performed asynchronously (O(N \log N)), ensuring zero impact on the critical path of email delivery.
 
 **(The system still needs enhancements.)**
